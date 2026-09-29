@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Family Feud</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- INTRO -->
+    <section id="intro-screen" class="screen">
+      <div class="stage-lights">
+        <div class="beam b1"></div>
+        <div class="beam b2"></div>
+        <div class="beam b3"></div>
+        <div class="beam b4"></div>
+        <div id="bulbs"></div>
+      </div>
+
+      <div class="intro-content">
+        <img src="logo.png" alt="Family Feud" class="game-logo" />
+        <button id="start-game-btn" class="primary-btn">START GAME</button>
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section id="game-screen" class="screen hidden">
+      <header class="top-bar">
+        <div class="team-card">
+          <div class="team-name">TEAM 1</div>
+          <div id="team-one-score" class="team-score">0</div>
+        </div>
+
+        <div class="center-info">
+          <div class="round-label">ROUND <span id="round-number">1</span></div>
+          <div class="bank-score">BANK <span id="bank-score">0</span></div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-name">TEAM 2</div>
+          <div id="team-two-score" class="team-score">0</div>
+        </div>
+      </header>
+
+      <h1 id="question">Loading question...</h1>
+
+      <section id="answers-container" class="answers-container"></section>
+
+      <footer class="strike-section">
+        <div class="strike"></div>
+        <div class="strike"></div>
+        <div class="strike"></div>
+      </footer>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result-screen" class="screen hidden">
+      <div class="result-label">THE WINNER IS</div>
+      <div id="winner-name" class="winner-name"></div>
+      <div class="final-scores">
+        <div class="final-card"><span>TEAM 1</span><b id="final-one">0</b></div>
+        <div class="final-card"><span>TEAM 2</span><b id="final-two">0</b></div>
+      </div>
+    </section>
+
+    <!-- BIG X + MESSAGE OVERLAYS -->
+    <div id="strike-overlay" class="strike-overlay"></div>
+    <div id="message-overlay" class="message-overlay"></div>
+
+    <!-- HIDDEN HOST PANEL (press H to show/hide) -->
+    <div id="host-panel" class="host-panel">
+      <button id="strike-btn">X Strike (X)</button>
+      <button id="team-one-btn">Bank → T1 (A)</button>
+      <button id="team-two-btn">Bank → T2 (L)</button>
+      <button id="undo-btn">Undo (U)</button>
+      <button id="next-round-btn">Next (N)</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
