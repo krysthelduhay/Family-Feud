@@ -4,9 +4,13 @@ const SOUNDS = {
   strike: "strike.mp3", //              <-- when they get a wrong answer (X)
   threeStrikes: "three-strikes.mp3", // <-- when the 3rd strike / STEAL TIME shows
   winner: "winner.mp3", //              <-- on the winner screen
+
+  round1: "round1.mp3", //              <-- ROUND 1 - Classroom Chronicles
+  round2: "round2.mp3", //              <-- ROUND 2 - Teacher Things
+  round3: "round3.mp3", //              <-- ROUND 3 - Double Points
+  round4: "round4.mp3", //              <-- ROUND 4 - College Face-Off
 };
 
-// (no need to edit below this line)
 const audioCache = {};
 Object.entries(SOUNDS).forEach(([name, file]) => {
   if (!file) return;
@@ -262,6 +266,7 @@ function loadQuestion(showBanner) {
 
   if (showBanner) {
     showMessage(`ROUND ${currentRound + 1}`, round.title, 2500);
+    playSound(`round${currentRound + 1}`);
   }
 }
 
