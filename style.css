@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* cursor is visible again. To hide it, add:  cursor: none !important;  */
 }
 
 html,
@@ -51,14 +50,14 @@ button {
 }
 
 .game-logo {
-  --logo-scale: 1.35; /* <-- CHANGE THIS to make the logo bigger or smaller */
+  --logo-scale: 1.35;
 
   width: auto;
-  height: 56vh; /* keep this as is, it holds the other items in place */
+  height: 56vh;
   max-width: 90vw;
   object-fit: contain;
   transform: scale(var(--logo-scale));
-  transform-origin: 50% 45%; /* grows mostly outward, not down onto the boxes */
+  transform-origin: 50% 45%;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.95))
     drop-shadow(0 0 25px rgba(255, 214, 70, 0.9))
     drop-shadow(0 0 55px rgba(255, 170, 0, 0.75));
@@ -348,8 +347,6 @@ button {
   content: "X";
 }
 
-/* NEXT button: glows + arrow nudges while there is another question.
-   On the last round it turns green and says SHOW WINNER. */
 .next-btn {
   justify-self: end;
   display: flex;
@@ -718,4 +715,11 @@ button {
   color: #ffd447;
   border-color: #ffd447;
   box-shadow: 0 0 14px rgba(255, 212, 71, 0.6);
+}
+
+.answer-card.revealed .answer-text {
+  flex: 1;
+  text-align: left;
+  line-height: 1.05;
+  font-size: 0.85em;
 }
