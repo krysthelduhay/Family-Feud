@@ -23,7 +23,7 @@ function playSound(name) {
   const audio = audioCache[name];
   if (!audio) return;
   audio.currentTime = 0;
-  audio.play().catch(() => {}); // stays silent if the file is missing
+  audio.play().catch(() => {});
 }
 
 function stopAllSounds() {
@@ -32,22 +32,6 @@ function stopAllSounds() {
     a.currentTime = 0;
   });
 }
-
-/* =====================================================
-   QUESTIONS
-
-   HOW TO FILL IN THE ANSWERS:
-   Replace  a: blank()  with your answers, like this:
-
-     a: [
-       ["Pen", 30],
-       ["Books", 22],
-       ["Papers", 18],
-     ],
-
-   Format is ["answer text", points]. Up to 8 answers per question.
-   Rounds with  multiplier: 2  automatically double the points.
-===================================================== */
 
 const blank = (n = 6) => Array.from({ length: n }, () => ["", 0]);
 
@@ -58,23 +42,58 @@ const rounds = [
     questions: [
       {
         q: "Name something a teacher does when the class is being too noisy.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Shush / Be Quiet", 34],
+          ["Scold / Get Angry", 13],
+          ["Wait / Stare in Silence", 13],
+          ["Shout / Raise Voice", 11],
+          ["Get Attention", 9],
+          ["Bang / Clap / Tap", 7],
+        ],
       },
       {
         q: "Name something a teacher usually does before starting a class.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Check Attendance", 35],
+          ["Greet Students", 24],
+          ["Opening Prayer", 22],
+          ["Prepare Materials", 8],
+          ["Icebreaker / Energizer", 3],
+          ["Review Last Lesson", 3],
+        ],
       },
       {
         q: "Name something that can make a classroom suddenly become quiet.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Teacher Gets Angry", 27],
+          ["Recitation", 16],
+          ["Quiz / Exam", 13],
+          ["Teacher Enters", 13],
+          ["Teacher Goes Silent", 10],
+          ["Activity / Discussion", 9],
+        ],
       },
       {
         q: "Name something a teacher might do when a student comes to class late.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Ask the Reason", 37],
+          ["Sing / Dance / Perform", 16],
+          ["Mark Late / Absent", 13],
+          ["Don't Let Them In", 11],
+          ["Scold / Warn", 9],
+          ["Remind to Be On Time", 7],
+        ],
       },
       {
         q: "Name something a teacher does when students are not paying attention.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Call Their Name", 26],
+          ["Recitation", 25],
+          ["Call Class Attention", 18],
+          ["Scold / Get Angry", 8],
+          ["Shout / Louder Voice", 7],
+          ["Bang the Table", 5],
+        ],
       },
     ],
   },
@@ -84,23 +103,58 @@ const rounds = [
     questions: [
       {
         q: "Name something you will almost always find inside a teacher's bag.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Laptop / Tablet", 30],
+          ["Pens", 24],
+          ["Whiteboard Markers", 17],
+          ["Cellphone", 8],
+          ["Papers", 8],
+          ["Lesson Plans", 4],
+        ],
       },
       {
         q: "Name something teachers do during their free period.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Eat / Snack", 34],
+          ["Rest / Sleep", 15],
+          ["Chat / Gossip", 12],
+          ["Use Phone", 11],
+          ["Check Papers", 10],
+          ["Lesson Planning", 8],
+        ],
       },
       {
         q: "Name something teachers commonly bring to school.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Laptop / Tablet", 41],
+          ["Bag", 14],
+          ["Tumbler", 8],
+          ["Phone", 7],
+          ["Markers / Pens", 7],
+          ["Lesson Materials", 6],
+        ],
       },
       {
         q: "Name something teachers often have on their desk.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Laptop / Tablet", 35],
+          ["Papers", 23],
+          ["Pens / Markers", 10],
+          ["Tumbler", 8],
+          ["Electric Fan", 5],
+          ["Class Records", 4],
+        ],
       },
       {
         q: "Name something teachers commonly use every day.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Laptop / Tablet", 34],
+          ["Markers / Chalk", 20],
+          ["Phone", 16],
+          ["Pens", 10],
+          ["Electric Fan", 4],
+          ["Papers / Documents", 3],
+        ],
       },
     ],
   },
@@ -110,23 +164,58 @@ const rounds = [
     questions: [
       {
         q: "Name something teachers hear from students almost every semester.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Grades", 12],
+          ["Deadline Extension", 11],
+          ["Quizzes", 9],
+          ["Exams", 9],
+          ["Greetings", 8],
+          ["Ang Hirap", 7],
+        ],
       },
       {
         q: "Name something students suddenly become interested in when class is almost over.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Going Home / Uwian", 18],
+          ["The Time / Clock", 16],
+          ["Early Dismissal", 10],
+          ["Food", 9],
+          ["Break Time", 7],
+          ["Packing Bags", 4],
+        ],
       },
       {
         q: "Name something that can make students suddenly become very quiet.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Recitation", 21],
+          ["Surprise Quiz", 14],
+          ["Angry Teacher", 14],
+          ["Exam Announcement", 10],
+          ["Serious Teacher", 6],
+          ["Teacher's Question", 5],
+        ],
       },
       {
         q: "Name something teachers wish students would remember.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Lessons", 52],
+          ["Deadlines", 9],
+          ["Respect / Manners", 7],
+          ["Life Lessons", 7],
+          ["Study Habits", 5],
+          ["Assignments", 4],
+        ],
       },
       {
         q: "Name something that can turn a normal class into a memorable one.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Humor / Jokes", 26],
+          ["Games / Icebreakers", 22],
+          ["Creative Activities", 11],
+          ["Teacher-Student Bond", 10],
+          ["Random Incidents", 7],
+          ["Storytelling", 6],
+        ],
       },
     ],
   },
@@ -136,43 +225,113 @@ const rounds = [
     questions: [
       {
         q: "Name something every teacher needs to survive a school day.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Patience", 27],
+          ["Coffee", 18],
+          ["Water / Tumbler", 9],
+          ["Food / Snacks", 7],
+          ["Laptop / Charger", 6],
+          ["Portable Fan", 5],
+        ],
       },
       {
         q: "Name something that makes teaching rewarding.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Students Learning", 36],
+          ["Students' Success", 17],
+          ["High Scores / Passing", 13],
+          ["“Aha!” Moments", 6],
+          ["Gratitude", 6],
+          ["Students Graduating", 4],
+        ],
       },
       {
         q: "Name something students can do that makes teachers feel appreciated.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Say Thank You", 27],
+          ["Listen / Pay Attention", 18],
+          ["Gifts / Chocolates", 9],
+          ["Participate", 8],
+          ["Respect / Manners", 8],
+          ["Greetings", 7],
+        ],
       },
       {
         q: "Name something teachers would love to receive on Teacher's Day.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Handwritten Letter", 26],
+          ["Chocolates / Sweets", 21],
+          ["Flowers", 13],
+          ["School Supplies", 10],
+          ["Cash / Bonus", 7],
+          ["Food / Meals", 6],
+        ],
       },
       {
         q: "Name something that represents a memorable teacher.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Humor / Jokes", 20],
+          ["Kindness", 15],
+          ["Unique Teaching Style", 12],
+          ["Catchphrases", 8],
+          ["Understanding", 8],
+          ["Life Lessons", 8],
+        ],
       },
       {
         q: "Name something students will always remember about a great teacher.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Kindness", 20],
+          ["Teaching Style", 16],
+          ["How They Made You Feel", 10],
+          ["Understanding", 8],
+          ["Life Lessons", 8],
+          ["Humor / Jokes", 7],
+        ],
       },
       {
         q: "Name something that makes a teacher proud.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["High Scores / Grades", 21],
+          ["Students' Success", 16],
+          ["Graduating", 13],
+          ["Improvement", 12],
+          ["Everyone Passing", 10],
+          ["Students Learning", 9],
+        ],
       },
       {
         q: "Name something that makes a classroom memorable.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Laughter / Jokes", 23],
+          ["Games / Activities", 18],
+          ["Friendship", 16],
+          ["Teamwork", 7],
+          ["Teacher-Student Bond", 7],
+          ["Shared Memories", 6],
+        ],
       },
       {
         q: "Name something teachers hope their students learn beyond the lesson.",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Respect / Manners", 22],
+          ["Life Lessons", 17],
+          ["Real-Life Skills", 14],
+          ["Good Character", 12],
+          ["Kindness", 7],
+          ["Discipline / Honesty", 6],
+        ],
       },
       {
         q: "Name something that makes a teacher say, “Worth it.”",
-        a: blank(), // <-- FILL IN ANSWERS
+        a: [
+          ["Graduation", 19],
+          ["Students' Success", 18],
+          ["Everyone Passes", 14],
+          ["Students Learning", 12],
+          ["Student Growth", 8],
+          ["High Scores", 8],
+        ],
       },
     ],
   },
