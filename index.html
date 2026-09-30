@@ -20,6 +20,28 @@
 
       <div class="intro-content">
         <img src="logo.png" alt="Family Feud" class="game-logo" />
+
+        <!-- TEAM NAMES: type them here before starting (blank = TEAM 1 / TEAM 2) -->
+        <div class="team-setup">
+          <input
+            id="team-one-input"
+            type="text"
+            maxlength="14"
+            placeholder="TEAM 1"
+            autocomplete="off"
+            aria-label="Team 1 name"
+          />
+          <span class="vs">VS</span>
+          <input
+            id="team-two-input"
+            type="text"
+            maxlength="14"
+            placeholder="TEAM 2"
+            autocomplete="off"
+            aria-label="Team 2 name"
+          />
+        </div>
+
         <button id="start-game-btn" class="primary-btn">START GAME</button>
       </div>
     </section>
@@ -28,17 +50,26 @@
     <section id="game-screen" class="screen hidden">
       <header class="top-bar">
         <div class="team-card">
-          <div class="team-name">TEAM 1</div>
+          <div id="team-one-name" class="team-name">TEAM 1</div>
           <div id="team-one-score" class="team-score">0</div>
         </div>
 
         <div class="center-info">
-          <div class="round-label">ROUND <span id="round-number">1</span></div>
+          <div class="round-label">
+            <div>
+              ROUND <span id="round-number">1</span> ·
+              <span id="round-title"></span>
+            </div>
+            <small
+              >QUESTION <span id="question-number">1</span> /
+              <span id="question-total">5</span></small
+            >
+          </div>
           <div class="bank-score">BANK <span id="bank-score">0</span></div>
         </div>
 
         <div class="team-card">
-          <div class="team-name">TEAM 2</div>
+          <div id="team-two-name" class="team-name">TEAM 2</div>
           <div id="team-two-score" class="team-score">0</div>
         </div>
       </header>
@@ -47,10 +78,17 @@
 
       <section id="answers-container" class="answers-container"></section>
 
-      <footer class="strike-section">
-        <div class="strike"></div>
-        <div class="strike"></div>
-        <div class="strike"></div>
+      <footer class="bottom-bar">
+        <div></div>
+        <div class="strike-section">
+          <div class="strike"></div>
+          <div class="strike"></div>
+          <div class="strike"></div>
+        </div>
+        <button id="next-btn" class="next-btn">
+          <span id="next-label">NEXT QUESTION</span>
+          <span class="arrow">&#9654;</span>
+        </button>
       </footer>
     </section>
 
@@ -59,8 +97,12 @@
       <div class="result-label">THE WINNER IS</div>
       <div id="winner-name" class="winner-name"></div>
       <div class="final-scores">
-        <div class="final-card"><span>TEAM 1</span><b id="final-one">0</b></div>
-        <div class="final-card"><span>TEAM 2</span><b id="final-two">0</b></div>
+        <div class="final-card">
+          <span id="final-one-name">TEAM 1</span><b id="final-one">0</b>
+        </div>
+        <div class="final-card">
+          <span id="final-two-name">TEAM 2</span><b id="final-two">0</b>
+        </div>
       </div>
     </section>
 
