@@ -1,116 +1,175 @@
+const SOUNDS = {
+  start: "start.mp3", //                <-- when START GAME is pressed
+  reveal: "reveal.mp3", //              <-- when an answer is opened
+  strike: "strike.mp3", //              <-- when they get a wrong answer (X)
+  threeStrikes: "three-strikes.mp3", // <-- when the 3rd strike / STEAL TIME shows
+  winner: "winner.mp3", //              <-- on the winner screen
+};
+
+// (no need to edit below this line)
+const audioCache = {};
+Object.entries(SOUNDS).forEach(([name, file]) => {
+  if (!file) return;
+  const audio = new Audio(file);
+  audio.preload = "auto";
+  audioCache[name] = audio;
+});
+
+function playSound(name) {
+  const audio = audioCache[name];
+  if (!audio) return;
+  audio.currentTime = 0;
+  audio.play().catch(() => {}); // stays silent if the file is missing
+}
+
+function stopAllSounds() {
+  Object.values(audioCache).forEach((a) => {
+    a.pause();
+    a.currentTime = 0;
+  });
+}
+
 /* =====================================================
-   QUESTIONS  (answer format: [text, points])
+   QUESTIONS
+
+   HOW TO FILL IN THE ANSWERS:
+   Replace  a: blank()  with your answers, like this:
+
+     a: [
+       ["Pen", 30],
+       ["Books", 22],
+       ["Papers", 18],
+     ],
+
+   Format is ["answer text", points]. Up to 8 answers per question.
+   Rounds with  multiplier: 2  automatically double the points.
 ===================================================== */
+
+const blank = (n = 6) => Array.from({ length: n }, () => ["", 0]);
 
 const rounds = [
   {
-    q: "Name something you'll always find on a teacher's desk.",
-    a: [
-      ["Pen", 30],
-      ["Books", 22],
-      ["Papers", 18],
-      ["Laptop", 12],
-      ["Coffee", 10],
-      ["Plant", 8],
+    title: "CLASSROOM CHRONICLES",
+    multiplier: 1,
+    questions: [
+      {
+        q: "Name something a teacher does when the class is being too noisy.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something a teacher usually does before starting a class.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something that can make a classroom suddenly become quiet.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something a teacher might do when a student comes to class late.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something a teacher does when students are not paying attention.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
     ],
   },
   {
-    q: "Name something that stresses teachers out.",
-    a: [
-      ["Paperwork", 30],
-      ["Deadlines", 22],
-      ["Noisy Students", 18],
-      ["Meetings", 14],
-      ["Reports", 10],
-      ["Traffic", 6],
+    title: "TEACHER THINGS",
+    multiplier: 1,
+    questions: [
+      {
+        q: "Name something you will almost always find inside a teacher's bag.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something teachers do during their free period.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something teachers commonly bring to school.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something teachers often have on their desk.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something teachers commonly use every day.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
     ],
   },
   {
-    q: "Name something teachers often say in class.",
-    a: [
-      ["Quiet Please", 30],
-      ["Any Questions?", 22],
-      ["Open Your Books", 18],
-      ["Take Your Seat", 14],
-      ["Pass Your Papers", 10],
-      ["Who Can Answer?", 6],
+    title: "DOUBLE POINTS",
+    multiplier: 2, // <-- points are doubled in this round
+    questions: [
+      {
+        q: "Name something teachers hear from students almost every semester.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something students suddenly become interested in when class is almost over.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something that can make students suddenly become very quiet.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something teachers wish students would remember.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something that can turn a normal class into a memorable one.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
     ],
   },
   {
-    q: "Name a school subject.",
-    a: [
-      ["Math", 32],
-      ["English", 24],
-      ["Science", 18],
-      ["History", 12],
-      ["P.E.", 8],
-      ["Art", 6],
-    ],
-  },
-  {
-    q: "Name something teachers do during their break.",
-    a: [
-      ["Eat", 32],
-      ["Drink Coffee", 22],
-      ["Chat", 18],
-      ["Check Phone", 14],
-      ["Rest", 8],
-      ["Prepare Lessons", 6],
-    ],
-  },
-  {
-    q: "Name something teachers use to check papers.",
-    a: [
-      ["Red Pen", 30],
-      ["Answer Key", 22],
-      ["Rubric", 18],
-      ["Calculator", 14],
-      ["Laptop", 10],
-      ["Stamp", 6],
-    ],
-  },
-  {
-    q: "Name something found in every classroom.",
-    a: [
-      ["Chairs", 30],
-      ["Whiteboard", 26],
-      ["Electric Fan", 16],
-      ["Clock", 12],
-      ["Trash Bin", 10],
-      ["Flag", 6],
-    ],
-  },
-  {
-    q: "Name a planet in our solar system.",
-    a: [
-      ["Earth", 30],
-      ["Mars", 24],
-      ["Jupiter", 18],
-      ["Saturn", 12],
-      ["Venus", 10],
-      ["Neptune", 6],
-    ],
-  },
-  {
-    q: "Name a famous tourist spot in the Philippines.",
-    a: [
-      ["Boracay", 32],
-      ["Palawan", 24],
-      ["Cebu", 16],
-      ["Baguio", 12],
-      ["Bohol", 10],
-      ["Siargao", 6],
-    ],
-  },
-  {
-    q: "Name an excuse students give for not passing homework.",
-    a: [
-      ["Forgot It At Home", 32],
-      ["No Internet", 24],
-      ["Was Sick", 18],
-      ["Lost It", 12],
-      ["Power Outage", 8],
-      ["Dog Ate It", 6],
+    title: "COLLEGE FACE-OFF",
+    multiplier: 1,
+    questions: [
+      {
+        q: "Name something every teacher needs to survive a school day.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something that makes teaching rewarding.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something students can do that makes teachers feel appreciated.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something teachers would love to receive on Teacher's Day.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something that represents a memorable teacher.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something students will always remember about a great teacher.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something that makes a teacher proud.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something that makes a classroom memorable.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something teachers hope their students learn beyond the lesson.",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
+      {
+        q: "Name something that makes a teacher say, “Worth it.”",
+        a: blank(), // <-- FILL IN ANSWERS
+      },
     ],
   },
 ];
@@ -120,8 +179,11 @@ const rounds = [
 ===================================================== */
 
 let currentRound = 0;
+let currentQuestion = 0;
 let teamOneScore = 0;
 let teamTwoScore = 0;
+let teamOneName = "TEAM 1";
+let teamTwoName = "TEAM 2";
 let bankScore = 0;
 let strikes = 0;
 let screen = "intro"; // intro | game | result
@@ -145,12 +207,18 @@ const strikeOverlay = $("strike-overlay");
 const messageOverlay = $("message-overlay");
 const hostPanel = $("host-panel");
 const strikeBoxes = document.querySelectorAll(".strike");
+const nextBtn = $("next-btn");
+const nextLabel = $("next-label");
+const teamOneInput = $("team-one-input");
+const teamTwoInput = $("team-two-input");
+const roundLabel = document.querySelector(".round-label");
 
 /* =====================================================
    SCREENS
 ===================================================== */
 
 function showScreen(name) {
+  stopAllSounds();
   screen = name;
   introScreen.classList.toggle("hidden", name !== "intro");
   gameScreen.classList.toggle("hidden", name !== "game");
@@ -158,30 +226,65 @@ function showScreen(name) {
 }
 
 function startGame() {
+  if (screen !== "intro") return;
+  teamOneName = teamOneInput.value.trim() || "TEAM 1";
+  teamTwoName = teamTwoInput.value.trim() || "TEAM 2";
+  $("team-one-name").textContent = teamOneName;
+  $("team-two-name").textContent = teamTwoName;
   history.length = 0;
   currentRound = 0;
+  currentQuestion = 0;
   teamOneScore = 0;
   teamTwoScore = 0;
   showScreen("game");
-  loadRound();
+  playSound("start");
+  loadQuestion(true);
 }
 
-function loadRound() {
+// showBanner = true shows the "ROUND X" title card (used when a new round begins)
+function loadQuestion(showBanner) {
   const round = rounds[currentRound];
+  const item = round.questions[currentQuestion];
+
   $("round-number").textContent = currentRound + 1;
-  questionElement.textContent = round.q;
+  $("round-title").textContent = round.title;
+  $("question-number").textContent = currentQuestion + 1;
+  $("question-total").textContent = round.questions.length;
+  roundLabel.classList.toggle("double", round.multiplier > 1);
+
+  questionElement.textContent = item.q;
   bankScore = 0;
   strikes = 0;
   strikeBoxes.forEach((s) => s.classList.remove("active"));
   updateScoreboard();
-  createAnswers(round.a);
+  createAnswers(item.a, round.multiplier);
+  updateNextButton();
+
+  if (showBanner) {
+    showMessage(`ROUND ${currentRound + 1}`, round.title, 2500);
+  }
 }
 
-function createAnswers(answers) {
+// "NEXT QUESTION" -> "NEXT ROUND" (last question of a round) -> "SHOW WINNER" (very last)
+function updateNextButton() {
+  const round = rounds[currentRound];
+  const lastQuestion = currentQuestion >= round.questions.length - 1;
+  const lastRound = currentRound >= rounds.length - 1;
+  const isLast = lastQuestion && lastRound;
+  nextBtn.classList.toggle("last", isLast);
+  nextLabel.textContent = isLast
+    ? "SHOW WINNER"
+    : lastQuestion
+      ? "NEXT ROUND"
+      : "NEXT QUESTION";
+}
+
+function createAnswers(answers, multiplier) {
   answersContainer.innerHTML = "";
   answersContainer.style.gridTemplateRows = `repeat(${Math.ceil(answers.length / 2)}, 1fr)`;
 
-  answers.forEach(([text, points], index) => {
+  answers.forEach(([text, basePoints], index) => {
+    const points = basePoints * multiplier; // doubled in the Double Points round
     const card = document.createElement("div");
     card.className = "answer-card";
     card.innerHTML = `
@@ -201,6 +304,7 @@ function revealAnswer(card, points) {
   if (screen !== "game" || card.classList.contains("revealed")) return;
   saveState();
   card.classList.add("revealed");
+  playSound("reveal");
   bankScore += points;
   updateScoreboard();
 }
@@ -211,11 +315,12 @@ function addStrike() {
   strikes++;
   strikeBoxes[strikes - 1].classList.add("active");
   showBigX(strikes);
+  playSound("strike");
   if (strikes === 3) {
-    stealTimer = setTimeout(
-      () => showMessage("THREE STRIKES!", "STEAL TIME!", 3500),
-      1300,
-    );
+    stealTimer = setTimeout(() => {
+      showMessage("THREE STRIKES!", "STEAL TIME!", 3500);
+      playSound("threeStrikes");
+    }, 1300);
   }
 }
 
@@ -259,24 +364,42 @@ function updateScoreboard() {
 function nextRound() {
   if (screen !== "game") return;
   saveState();
-  if (currentRound >= rounds.length - 1) {
+  const round = rounds[currentRound];
+
+  if (currentQuestion < round.questions.length - 1) {
+    // next question in the same round
+    currentQuestion++;
+    loadQuestion(false);
+  } else if (currentRound < rounds.length - 1) {
+    // start of a new round
+    currentRound++;
+    currentQuestion = 0;
+    loadQuestion(true);
+  } else {
     showResult();
-    return;
   }
-  currentRound++;
-  loadRound();
 }
 
 function showResult() {
   $("final-one").textContent = teamOneScore;
   $("final-two").textContent = teamTwoScore;
-  $("winner-name").textContent =
+  $("final-one-name").textContent = teamOneName;
+  $("final-two-name").textContent = teamTwoName;
+
+  const winner =
     teamOneScore === teamTwoScore
       ? "IT'S A TIE!"
       : teamOneScore > teamTwoScore
-        ? "TEAM 1"
-        : "TEAM 2";
+        ? teamOneName
+        : teamTwoName;
+
+  const el = $("winner-name");
+  el.textContent = winner.toUpperCase();
+  // shrink long names so they always fit the screen width
+  el.style.fontSize = `min(20vh, ${(88 / (Math.max(winner.length, 5) * 0.8)).toFixed(1)}vw)`;
+
   showScreen("result");
+  playSound("winner");
 }
 
 /* =====================================================
@@ -287,6 +410,7 @@ function saveState() {
   history.push({
     screen,
     round: currentRound,
+    question: currentQuestion,
     one: teamOneScore,
     two: teamTwoScore,
     bank: bankScore,
@@ -310,7 +434,8 @@ function undo() {
 
   showScreen("game");
   currentRound = s.round;
-  loadRound();
+  currentQuestion = s.question;
+  loadQuestion(false);
 
   teamOneScore = s.one;
   teamTwoScore = s.two;
@@ -331,7 +456,7 @@ function undo() {
    CONTROLS
    Click answers or press 1-8 to reveal.
    X = strike | A = bank to Team 1 | L = bank to Team 2
-   U = undo last action | N = next round | H = show/hide host buttons
+   U = undo last action | N = next | H = show/hide host buttons
    F = fullscreen | R = restart (on winner screen)
 ===================================================== */
 
@@ -341,8 +466,18 @@ $("team-one-btn").addEventListener("click", () => giveBank(1));
 $("team-two-btn").addEventListener("click", () => giveBank(2));
 $("undo-btn").addEventListener("click", undo);
 $("next-round-btn").addEventListener("click", nextRound);
+nextBtn.addEventListener("click", () => {
+  nextRound();
+  nextBtn.blur(); // so Space/Enter won't trigger it again by accident
+});
 
 document.addEventListener("keydown", (e) => {
+  // typing in the team-name boxes: only Enter starts the game
+  if (e.target.tagName === "INPUT") {
+    if (e.key === "Enter") startGame();
+    return;
+  }
+
   const key = e.key.toLowerCase();
 
   if (key === "f") {
