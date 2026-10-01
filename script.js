@@ -257,7 +257,7 @@ const rounds = [
         ],
       },
       {
-        q: "Name something teachers would love to receive on Teacher's Day.",
+        q: "Name something teachers would love to receive on Teachers' Day.",
         a: [
           ["Handwritten Letter", 26],
           ["Chocolates / Sweets", 21],
